@@ -4,5 +4,5 @@ module.exports = {
       theme: "mat"
     }
   },
-  transpileDependencies: [/[\\\/]node_modules[\\\/]quasar-framework[\\\/]/]
+  transpileDependencies: [/[\\/]node_modules[\\/]quasar-framework[\\/]/]
 };
