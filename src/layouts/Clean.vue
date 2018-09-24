@@ -5,8 +5,8 @@
         color="primary"
       >
         <q-toolbar-title>
-          Login
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
+          Cocolsillo
+          <div slot="subtitle">Login</div>
         </q-toolbar-title>
       </q-toolbar>
     </q-layout-header>
