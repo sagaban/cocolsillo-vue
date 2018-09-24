@@ -1,4 +1,5 @@
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const PUBLIC_PATH = "https://cocolsillo-vue.firebaseapp.com/";
 
 module.exports = {
   pluginOptions: {
@@ -15,7 +16,8 @@ module.exports = {
           filename: "service-worker.js",
           staticFileGlobs: ["dist/**/*.{js,html,css}"],
           minify: true,
-          stripPrefix: "dist/"
+          stripPrefix: "dist/",
+          navigateFallback: PUBLIC_PATH + "index.html"
         }
       ]);
     }
