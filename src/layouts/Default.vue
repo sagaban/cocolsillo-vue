@@ -55,7 +55,9 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import fb from "@/firebase-manager";
+import { SET_CURRENT_USER, SET_USER_PROFILE } from "@/store/mutation-types";
+
 import { openURL } from "quasar";
 
 export default {
@@ -68,11 +70,12 @@ export default {
   methods: {
     openURL,
     logout() {
-      const { $router } = this;
-      firebase
-        .auth()
+      const { $router, $store } = this;
+      fb.auth
         .signOut()
         .then(function() {
+          $store.commit(SET_CURRENT_USER, null);
+          $store.commit(SET_USER_PROFILE, null);
           $router.push("/login");
         })
         .catch(function(error) {

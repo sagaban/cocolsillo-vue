@@ -3,10 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-
-import VueFire from "vuefire";
-import firebase from "firebase";
-import firebaseConfig from "../firebase.config";
+import fb from "@/firebase-manager";
 
 import "./styles/quasar.styl";
 import lang from "quasar-framework/i18n/es";
@@ -56,8 +53,6 @@ Vue.use(Quasar, {
   iconSet: iconSet
 });
 
-Vue.use(VueFire);
-firebase.initializeApp(firebaseConfig);
 /*
 // date issue fix according to firebase
 const settings = {
@@ -68,10 +63,7 @@ db.settings(settings)
 Vue.config.productionTip = false;
 
 let app;
-firebase.auth().onAuthStateChanged(user => {
-  console.log(`user.displayName: ${user.displayName}`);
-  console.log(`user.email: ${user.email}`);
-  console.log(`user.photoURL: ${user.photoURL}`);
+fb.auth.onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
       router,
