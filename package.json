@@ -11,7 +11,9 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "firebase": "^5.5.1",
+    "lodash": "^4.17.11",
     "quasar-extras": "^2.0.4",
     "quasar-framework": "^0.17.0",
     "register-service-worker": "^1.5.2",

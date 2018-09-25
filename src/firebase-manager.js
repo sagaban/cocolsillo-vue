@@ -25,6 +25,8 @@ const signInGoogleWithRedirect = () =>
 // firebase collections
 const usersCollection = db.collection("users");
 const instancesCollection = db.collection("instances");
+const transactionsCollection = instanceId =>
+  db.collection(`instances/${instanceId}/transactions`);
 
 export default {
   db,
@@ -33,5 +35,6 @@ export default {
   signInGoogleWithPopup,
   currentUser,
   usersCollection,
-  instancesCollection
+  instancesCollection,
+  transactionsCollection
 };

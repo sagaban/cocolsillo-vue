@@ -18,7 +18,8 @@ const plugins = [];
 
 const baseState = {
   currentUser: null,
-  userProfile: null
+  userProfile: null,
+  transactions: []
 };
 
 const store = new Vuex.Store({

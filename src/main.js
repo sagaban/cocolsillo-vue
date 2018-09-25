@@ -26,7 +26,8 @@ import {
   QItemSeparator,
   QItem,
   QItemSide,
-  QItemMain
+  QItemMain,
+  Notify
 } from "quasar";
 
 Vue.use(Quasar, {
@@ -48,7 +49,9 @@ Vue.use(Quasar, {
     QItemMain
   },
   directives: {},
-  plugins: {},
+  plugins: {
+    Notify
+  },
   i18n: lang,
   iconSet: iconSet
 });

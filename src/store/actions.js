@@ -1,5 +1,10 @@
 import fb from "@/firebase-manager";
-import { SET_USER_PROFILE, UPDATE_USER_PROFILE } from "@/store/mutation-types";
+import {
+  SET_USER_PROFILE,
+  UPDATE_USER_PROFILE,
+  ADD_TRANSACTIONS
+} from "@/store/mutation-types";
+import startOfMonthFrom from "date-fns/start_of_month";
 
 export default {
   createOrFetchUserProfile({ dispatch, commit, state }) {
@@ -55,6 +60,19 @@ export default {
       })
       .then(() => {
         dispatch("updateUserProfile", { associatedInstance: instance.id });
+      });
+  },
+  fetchMonthTransactions({ commit, state }, date) {
+    fb.transactionsCollection(state.userProfile.associatedInstance)
+      .where("date", ">=", startOfMonthFrom(date))
+      .orderBy("date")
+      .get()
+      .then(res => {
+        const transactions = res.docs.map((c, i, a) => ({
+          ...c.data(),
+          id: a[i].id
+        }));
+        commit(ADD_TRANSACTIONS, transactions);
       });
   }
 };
