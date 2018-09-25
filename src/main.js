@@ -53,13 +53,6 @@ Vue.use(Quasar, {
   iconSet: iconSet
 });
 
-/*
-// date issue fix according to firebase
-const settings = {
-  timestampsInSnapshots: true
-}
-db.settings(settings)
-*/
 Vue.config.productionTip = false;
 
 let app;
@@ -68,7 +61,22 @@ fb.auth.onAuthStateChanged(() => {
     app = new Vue({
       router,
       store,
-      render: h => h(App)
+      render: h => h(App),
+      computed: {
+        userProfile() {
+          return this.$store.getters.userProfile;
+        }
+      },
+      watch: {
+        userProfile() {
+          if (
+            this.$store.getters.userProfile &&
+            !this.$store.getters.userProfile.associatedInstance
+          ) {
+            this.$store.dispatch("createNewInstance");
+          }
+        }
+      }
     }).$mount("#app");
   }
 });

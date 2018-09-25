@@ -1,4 +1,8 @@
-import { SET_CURRENT_USER, SET_USER_PROFILE } from "@/store/mutation-types";
+import {
+  SET_CURRENT_USER,
+  SET_USER_PROFILE,
+  UPDATE_USER_PROFILE
+} from "@/store/mutation-types";
 
 export default {
   [SET_CURRENT_USER](state, val) {
@@ -6,5 +10,8 @@ export default {
   },
   [SET_USER_PROFILE](state, val) {
     state.userProfile = val;
+  },
+  [UPDATE_USER_PROFILE](state, val) {
+    state.userProfile = { ...state.userProfile, ...val };
   }
 };

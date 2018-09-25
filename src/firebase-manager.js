@@ -1,10 +1,9 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/firestore";
 import firebaseConfig from "../firebase.config";
 
 firebase.initializeApp(firebaseConfig);
 
-// firebase utils
 const db = firebase.firestore();
 const auth = firebase.auth();
 const currentUser = auth.currentUser;
@@ -14,6 +13,9 @@ const settings = {
   timestampsInSnapshots: true
 };
 db.settings(settings);
+
+firebase.firestore().enablePersistence();
+
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 const signInGoogleWithPopup = () => auth.signInWithPopup(googleAuthProvider);
 
@@ -22,6 +24,7 @@ const signInGoogleWithRedirect = () =>
 
 // firebase collections
 const usersCollection = db.collection("users");
+const instancesCollection = db.collection("instances");
 
 export default {
   db,
@@ -29,5 +32,6 @@ export default {
   signInGoogleWithRedirect,
   signInGoogleWithPopup,
   currentUser,
-  usersCollection
+  usersCollection,
+  instancesCollection
 };
